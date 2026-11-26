@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PlusOne | द अल्टीमेट मीडिया नेटवर्क</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Rozha+One&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F4FB;--card:#fff;--ink:#141833;--mute:#5d6384;--line:#dfe3f2;--acc:#2B3BFF;--hot:#FF4D6D;--r:14px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1230;--card:#181c43;--ink:#eef0ff;--mute:#a4a9d1;--line:#2b3066;--acc:#6f7bff}}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Mukta',system-ui,sans-serif;font-size:16px;line-height:1.5}
+body{padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+header{padding:14px 16px 8px;display:flex;align-items:center;gap:10px}
+#logo{font-family:'Rozha One',serif;font-size:30px;letter-spacing:1px;color:var(--acc);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;line-height:1}
+.tag{font-size:12px;color:var(--mute);line-height:1.2}
+main{max-width:900px;margin:0 auto;padding:0 14px}
+h2.sec{font-family:'Rozha One',serif;font-size:21px;margin:22px 0 10px;font-weight:400;border-left:5px solid var(--hot);padding-left:10px}
+.hero{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.hero .body{padding:14px}.hero h1{font-family:'Rozha One',serif;font-weight:400;font-size:24px;line-height:1.3;cursor:pointer}
+.media{position:relative;width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--acc),var(--hot));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Rozha One',serif;font-size:28px}
+.media img,.media iframe,.media video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000}
+.media video{object-fit:contain}
+.row{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+.row .card{flex:0 0 78%;scroll-snap-align:start}
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}.row .card{flex-basis:300px}}
+@media(min-width:900px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.card .body{padding:10px 12px 14px;cursor:pointer}
+.card h3{font-size:17px;font-weight:800;line-height:1.35}
+.card p{font-size:14px;color:var(--mute);margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{font-size:12px;color:var(--mute);margin-bottom:3px}
+.badge{display:inline-block;background:var(--acc);color:#fff;font-size:12px;font-weight:600;padding:1px 9px;border-radius:99px;margin-right:6px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:20}
+nav button{flex:1;background:none;border:0;color:var(--mute);font:600 14px 'Mukta',sans-serif;padding:10px 2px;border-radius:10px;cursor:pointer}
+nav button.on{color:#fff;background:var(--acc)}
+.empty{text-align:center;color:var(--mute);padding:40px 10px}
+.ov{position:fixed;inset:0;background:rgba(10,12,35,.72);z-index:50;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:16px}
+.ov.show{display:flex}
+.sheet{background:var(--card);border-radius:var(--r);width:100%;max-width:640px;margin:auto 0;padding:16px;position:relative}
+.sheet .x{position:absolute;right:10px;top:8px;background:none;border:0;color:var(--ink);font-size:26px;cursor:pointer;z-index:3}
+.sheet h3{font-family:'Rozha One',serif;font-weight:400;font-size:22px;margin:0 28px 10px 0}
+input,select,textarea{width:100%;padding:11px 12px;margin:5px 0 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:16px 'Mukta',sans-serif}
+label{font-size:13px;font-weight:600;color:var(--mute)}
+.btn{background:var(--acc);color:#fff;border:0;padding:12px 18px;border-radius:10px;font:700 16px 'Mukta',sans-serif;cursor:pointer;width:100%}
+.btn.del{background:var(--hot);width:auto;padding:6px 12px;font-size:14px}
+.btn.alt{background:var(--mute)}
+.item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+#msg{font-size:14px;margin:8px 0;font-weight:600}
+details{margin:12px 0;border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+summary{cursor:pointer;font-weight:600}
+
+.srch{max-width:900px;margin:0 auto;padding:4px 14px 6px}
+.srch input{background:#fff;color:#000;border:2px solid #D4AF37;border-radius:12px;margin:0;padding:12px 14px}
+.srch input::placeholder{color:#666}
+.srch input:focus{outline:2px solid #D4AF37;outline-offset:2px}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px 12px}
+.hero .acts{padding:0 14px 14px}.sheet .acts{padding:12px 0 0}
+.acts button{background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:10px;padding:10px 6px;min-height:44px;font:700 15px 'Mukta',sans-serif;cursor:pointer}
+.acts button.on{background:#2b2300}
+.card{position:relative}.card.notes{border:2px solid #D4AF37}
+.tb{position:absolute;top:8px;left:8px;z-index:3;background:#000;color:#D4AF37;border:1.5px solid #D4AF37;font-weight:800;font-size:12px;letter-spacing:1px;padding:2px 10px;border-radius:99px}
+.tb.q{background:#D4AF37;color:#000}
+.nt{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.nt span{border:1px solid #D4AF37;border-radius:8px;padding:1px 8px;font-size:13px;font-weight:600}
+.nlink{display:inline-block;margin-top:4px;background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:10px;padding:8px 14px;font-weight:700;text-decoration:none;font-size:14px}
+.qh{font-size:13px;font-weight:700;color:var(--acc);margin-top:4px}
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+.edu button{background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:10px;padding:10px 4px;min-height:44px;font:700 15px 'Mukta',sans-serif;cursor:pointer}
+.edu button.on{background:#D4AF37;color:#000}
+.qo{display:block;width:100%;text-align:left;background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:10px;padding:12px;margin:8px 0;font:600 16px 'Mukta',sans-serif;cursor:pointer}
+.qo.ok{background:#16a34a;border-color:#16a34a}.qo.bad{background:#dc2626;border-color:#dc2626}
+.qq{font-size:18px;margin:4px 0}.qn{font-size:13px;color:var(--mute);margin-top:12px}
+.score{font-family:'Rozha One',serif;font-size:26px;text-align:center;margin:16px 0}
+.qb{border:1px dashed var(--line);border-radius:10px;padding:8px 10px;margin:8px 0}
+.cover{cursor:pointer}
+.pl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(0,0,0,.65);border:2px solid #D4AF37;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;padding-left:4px;z-index:2}
+#shov{z-index:60;align-items:flex-end}
+.shp{font-size:14px;color:var(--mute);margin:-4px 0 12px}
+.shg{display:grid;grid-template-columns:1fr;gap:10px}
+.shg .cl{grid-column:1/-1}
+.shg .wa{display:flex;align-items:center;justify-content:flex-start;gap:12px;border-color:#25D366;border-radius:12px;padding:9px 14px;color:#fff;font-weight:800}
+.shg button{background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:12px;padding:12px 6px;min-height:48px;font:700 15px 'Mukta',sans-serif;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);max-width:92%;background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14px;text-align:center;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <div id="logo">PlusOne</div>
+  <div class="tag">द अल्टीमेट<br>मीडिया नेटवर्क</div>
+</header>
+<div class="srch"><input id="q" type="search" placeholder="खोजें" autocomplete="off" aria-label="खोजें"></div>
+<main id="app"><div class="empty">लोड हो रहा है…</div></main>
+<nav id="nav"></nav>
+
+<div class="ov" id="shov"><div class="sheet" id="shsheet"></div></div>
+<div id="toast"></div>
+<div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
+
+<script>
+/* ====== GitHub सेटिंग (यहाँ अपना username / repo डालें) ====== */
+const CFG={owner:"YOUR_GITHUB_USERNAME",repo:"YOUR_REPO_NAME",branch:"main",file:"posts.json"};
+const PW1="9116808120",PW2="9783329783";
+const CATS={News:"न्यूज़",TV:"टीवी",Education:"शिक्षा",Music:"म्यूज़िक"};
+const PAGES=[["home","होम"],["News","न्यूज़"],["TV","टीवी"],["Education","शिक्षा"],["Music","म्यूज़िक"]];
+let posts=[],page="home",q="",edu="all",all=[];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const gh=()=>({owner:ls.get("nx_owner")||CFG.owner,repo:ls.get("nx_repo")||CFG.repo,branch:ls.get("nx_branch")||CFG.branch,token:ls.get("nx_token")||""});
+
+/* ====== Data: posts.json लोड ====== */
+const cq=a=>Array.isArray(a)?a.filter(x=>x&&x.q&&Array.isArray(x.options)&&x.options.length===4).map(x=>({q:String(x.q),options:x.options.map(String),answer:Math.min(3,Math.max(0,Number(x.answer)||0))})):[];
+const tm=x=>{const d=Date.parse(x);return isNaN(d)?null:d};
+const isLive=p=>{const n=Date.now(),a=tm(p.post_time),d=tm(p.delete_time);return(a===null||a<=n)&&(d===null||n<d)};
+const expired=p=>{const d=tm(p.delete_time);return d!==null&&Date.now()>=d};
+const fmt=x=>new Date(x).toLocaleString("en-IN",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit",hour12:true});
+const delTag=p=>tm(p.delete_time)!==null?` · <span style="color:var(--hot);font-weight:600">Delete: ${new Date(p.delete_time).toLocaleDateString("en-IN",{day:"numeric",month:"short"})}</span>`:"";
+const adminInfo=p=>{const a=tm(p.post_time);return `<br><small style="color:var(--mute)">${expired(p)?"⛔ समय पूरा · ":""}${a!==null&&a>Date.now()?"⏳ दिखेगी: "+fmt(p.post_time)+" · ":""}${tm(p.delete_time)!==null?"🗑 Delete: "+fmt(p.delete_time):"✅ No Delete"}</small>`};
+function refresh(){const b=posts.map(p=>p.id).join();posts=all.filter(isLive);return b!==posts.map(p=>p.id).join()}
+async function purge(){const g=gh();if(!g.token)return;const keep=all.filter(p=>!expired(p));if(keep.length===all.length)return;try{await saveToGitHub(keep);all=keep;refresh();render()}catch(e){}}
+function clean(a){return (Array.isArray(a)?a:[]).filter(p=>p&&p.title).map(p=>({id:p.id||Date.parse(p.date)||Math.random(),title:p.title,category:CATS[p.category]?p.category:"News",thumbnail:p.thumbnail||"",video:p.video||"",description:p.description||"",likes:Number(p.likes)||0,type:["notes","quiz"].includes(p.type)?p.type:"normal",subject:p.subject||"",class:p.class||"",chapter:p.chapter||"",notes_link:p.notes_link||"",quiz:cq(p.quiz),post_time:p.post_time||"",delete_time:p.delete_time||"",date:p.date||""})).map(p=>p.type==="quiz"&&!p.quiz.length?{...p,type:"normal"}:p).sort((a,b)=>String(b.post_time||b.date).localeCompare(String(a.post_time||a.date)))}
+async function load(){
+  const g=gh();let data=null;
+  if(g.owner&&g.owner!=="YOUR_GITHUB_USERNAME"){
+    try{const r=await fetch(`https://api.github.com/repos/${g.owner}/${g.repo}/contents/${CFG.file}?ref=${g.branch}`,{headers:{Accept:"application/vnd.github.raw+json"},cache:"no-store"});if(r.ok)data=JSON.parse(await r.text())}catch(e){}
+  }
+  if(!data){try{const r=await fetch(CFG.file+"?t="+Date.now(),{cache:"no-store"});if(r.ok)data=await r.json()}catch(e){}}
+  all=clean(Array.isArray(data)?data:data&&data.posts);refresh();render();purge();
+}
+
+/* ====== Media: Video > Photo ====== */
+function ytId(u){const m=String(u).match(/(?:youtu\.be\/|v=|shorts\/|embed\/|live\/)([\w-]{11})/);return m?m[1]:null}
+function media(p,play){
+  const v=(p.video||"").trim(),t=(p.thumbnail||"").trim()||(p.type==="notes"&&/\.(jpe?g|png|webp|gif)(\?|$)/i.test(p.notes_link||"")?p.notes_link:"");
+  if(v&&t&&!play)return `<div class="media cover" data-pid="${esc(p.id)}"><img src="${esc(t)}" alt="${esc(p.title)}" loading="lazy" onerror="this.remove()"><span class="pl">▶</span></div>`;
+  if(v){const id=ytId(v);
+    if(id)return `<div class="media"><iframe loading="lazy" src="https://www.youtube.com/embed/${id}?rel=0&playsinline=1${play?"&autoplay=1":""}" allow="accelerometer;autoplay;encrypted-media;picture-in-picture;fullscreen" allowfullscreen title="${esc(p.title)}"></iframe></div>`;
+    return `<div class="media"><video controls playsinline ${play?"autoplay":""} preload="metadata" ${t?`poster="${esc(t)}"`:""} src="${esc(v)}"></video></div>`;
+  }
+  if(t)return `<div class="media">PlusOne<img src="${esc(t)}" alt="${esc(p.title)}" loading="lazy" onerror="this.remove()"></div>`;
+  return `<div class="media">PlusOne</div>`;
+}
+const dt=d=>{try{return new Date(d).toLocaleDateString("hi-IN",{day:"numeric",month:"short",year:"numeric"})}catch(e){return ""}};
+const lk=()=>{try{return JSON.parse(ls.get("nx_likes")||"{}")}catch(e){return{}}};
+const acts=p=>{const on=!!lk()[p.id];return `<div class="acts"><button data-like="${esc(p.id)}" class="${on?"on":""}" aria-pressed="${on}">❤️ <span>${(p.likes||0)+(on?1:0)}</span></button><button data-share="${esc(p.id)}">📤 शेयर</button></div>`};
+const su=u=>/^https?:\/\//i.test(u||"")?esc(u):"";
+const tbadge=p=>p.type==="notes"?`<span class="tb">NOTES</span>`:p.type==="quiz"?`<span class="tb q">QUIZ</span>`:"";
+const extra=(p,sh)=>p.type==="notes"?`<div class="nt">${p.subject?`<span>विषय: ${esc(p.subject)}</span>`:""}${p.class?`<span>कक्षा: ${esc(p.class)}</span>`:""}${p.chapter?`<span>अध्याय: ${esc(p.chapter)}</span>`:""}</div>${su(p.notes_link)?`<a class="nlink" href="${su(p.notes_link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">📄 PDF / Notes खोलें</a>`:""}`:(p.type==="quiz"&&!sh?`<div class="qh">📝 Quiz · ${p.quiz.length} सवाल — खेलने के लिए खोलें</div>`:"");
+const card=p=>`<div class="card${p.type==="notes"?" notes":""}">${tbadge(p)}${media(p)}<div class="body" data-id="${esc(p.id)}"><div class="meta"><span class="badge">${CATS[p.category]}</span>${dt(p.date)}${delTag(p)}</div><h3>${esc(p.title)}</h3>${extra(p)}${p.description?`<p>${esc(p.description)}</p>`:""}</div>${acts(p)}</div>`;
+
+/* ====== Pages ====== */
+const inPage=()=>posts.filter(p=>p.category===page&&(page!=="Education"||edu==="all"||p.type===edu));
+const eduBar=()=>page==="Education"?`<div class="edu">${[["all","All Posts"],["notes","Notes"],["quiz","Quiz"]].map(([k,l])=>`<button data-e="${k}" class="${k===edu?"on":""}">${l}</button>`).join("")}</div>`:"";
+function eduBlock(){const L="ABCD".split("");return `<div id="f_edu" style="display:none"><label>टाइप</label><select id="f_ty"><option value="normal">Normal Post</option><option value="notes">Notes</option><option value="quiz">Quiz</option></select>
+  <div id="f_notes" style="display:none"><label>Subject</label><input id="n_s"><label>Class</label><input id="n_c"><label>Chapter</label><input id="n_h"><label>Notes Link (PDF / Photo)</label><input id="n_l" type="url" placeholder="https://..."></div>
+  <div id="f_quiz" style="display:none">${[1,2,3,4,5].map(n=>`<div class="qb"><label>सवाल ${n}</label><input id="qq${n}">${L.map((x,k)=>`<input id="qo${n}${k}" placeholder="Option ${x}">`).join("")}<label>सही जवाब</label><select id="qc${n}">${L.map((x,k)=>`<option value="${k}">${x}</option>`).join("")}</select></div>`).join("")}</div></div>`}
+function admToggle(){const e=$("#f_c").value==="Education",t=$("#f_ty").value;$("#f_edu").style.display=e?"block":"none";$("#f_notes").style.display=e&&t==="notes"?"block":"none";$("#f_quiz").style.display=e&&t==="quiz"?"block":"none"}
+function eduFields(){
+  if($("#f_c").value!=="Education")return{type:"normal"};
+  const ty=$("#f_ty").value,f=id=>$("#"+id).value.trim();
+  if(ty==="notes"){const o={type:"notes",subject:f("n_s"),class:f("n_c"),chapter:f("n_h"),notes_link:f("n_l")};return o.subject&&o.class&&o.chapter?o:"Subject, Class और Chapter भरना ज़रूरी है।"}
+  if(ty==="quiz"){const quiz=[];for(let n=1;n<=5;n++){const q=f("qq"+n),op=[0,1,2,3].map(k=>f("qo"+n+k));if(!q||op.some(x=>!x))return "सवाल "+n+" और उसके चारों Option भरें।";quiz.push({q,options:op,answer:+$("#qc"+n).value})}return{type:"quiz",quiz}}
+  return{type:"normal"}}
+function quizInit(p){const el=$("#quiz");if(!el)return;let i=0,sc=0,lock=false;const N=p.quiz.length;
+  const show=()=>{lock=false;
+    if(i>=N){el.innerHTML=`<div class="score">आपका Score: ${sc}/${N}</div><button class="btn" id="qr">फिर से Try करो</button>`;$("#qr").onclick=()=>{i=0;sc=0;show()};return}
+    const q=p.quiz[i];
+    el.innerHTML=`<div class="qn">सवाल ${i+1}/${N}</div><h4 class="qq">${esc(q.q)}</h4>`+q.options.map((o,k)=>`<button class="qo" data-k="${k}">${"ABCD"[k]}. ${esc(o)}</button>`).join("");
+    const bs=el.querySelectorAll(".qo");
+    bs.forEach(b=>b.onclick=()=>{if(lock)return;lock=true;const k=+b.dataset.k;if(k===q.answer){sc++;b.classList.add("ok")}else{b.classList.add("bad");bs[q.answer].classList.add("ok")}setTimeout(()=>{i++;show()},1100)})};
+  show()}
+function render(){
+  $("#nav").innerHTML=PAGES.map(([k,l])=>`<button class="${k===page?"on":""}" data-p="${k}">${l}</button>`).join("");
+  const app=$("#app");
+  const qq=q.trim().toLowerCase();
+  if(qq){const base=page==="home"?posts:inPage();const m=base.filter(p=>[p.title,p.description,p.subject,p.chapter].join(" ").toLowerCase().includes(qq));app.innerHTML=`<h2 class="sec">खोज परिणाम (${m.length})</h2>${eduBar()}`+(m.length?`<div class="grid">${m.map(card).join("")}</div>`:`<div class="empty">कोई पोस्ट नहीं मिली।</div>`);return}
+  if(!posts.length){app.innerHTML=`<div class="empty">अभी कोई पोस्ट नहीं है।</div>`;return}
+  if(page==="home"){
+    const h=posts[0];
+    const trend=[...posts.filter(p=>p.video),...posts.filter(p=>!p.video)].slice(0,6);
+    app.innerHTML=`<div class="hero">${media(h)}<div class="body" data-id="${esc(h.id)}"><div class="meta"><span class="badge">${CATS[h.category]}</span>${dt(h.date)}${delTag(h)}</div><h1>${esc(h.title)}</h1></div>${acts(h)}</div>
+    <h2 class="sec">ट्रेंडिंग</h2><div class="row">${trend.map(card).join("")}</div>
+    <h2 class="sec">ताज़ा पोस्ट</h2><div class="grid">${posts.map(card).join("")}</div>`;
+  }else{
+    const list=inPage();
+    app.innerHTML=`<h2 class="sec">${CATS[page]}</h2>${eduBar()}`+(list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<div class="empty">इस कैटेगरी में अभी कोई पोस्ट नहीं है।</div>`);
+  }
+}
+$("#nav").onclick=e=>{const b=e.target.closest("[data-p]");if(b){page=b.dataset.p;render();scrollTo(0,0)}};
+
+/* ====== पोस्ट खोलना ====== */
+function openSheet(html){$("#sheet").innerHTML=`<button class="x" onclick="closeSheet()" aria-label="बंद करें">×</button>`+html;$("#ov").classList.add("show")}
+function closeSheet(){$("#ov").classList.remove("show");$("#sheet").innerHTML=""}
+$("#ov").onclick=e=>{if(e.target.id==="ov")closeSheet()};
+$("#app").onclick=e=>{const b=e.target.closest("[data-id]");if(!b)return;const p=posts.find(x=>String(x.id)===b.dataset.id);if(!p)return;
+  openSheet(`${media(p)}<div class="meta" style="margin-top:10px"><span class="badge">${CATS[p.category]}</span>${dt(p.date)}</div><h3 style="margin-top:4px">${esc(p.title)}</h3>${extra(p,1)}<p style="white-space:pre-wrap">${esc(p.description)}</p>${p.type==="quiz"?`<div id="quiz"></div>`:""}${acts(p)}`);if(p.type==="quiz")quizInit(p)};
+
+/* ====== Admin: लोगो पर 5 बार टैप ====== */
+let taps=0,tt;
+$("#logo").onclick=()=>{taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,2000);if(taps>=5){taps=0;step1()}};
+function step1(){openSheet(`<h3>एडमिन लॉगिन</h3><label>पहला पासवर्ड</label><input id="p1" type="password" inputmode="numeric" autocomplete="off"><div id="msg"></div><button class="btn" onclick="chk1()">आगे बढ़ें</button>`)}
+function chk1(){if($("#p1").value===PW1)step2();else $("#msg").textContent="पासवर्ड गलत है।"}
+function step2(){openSheet(`<h3>एडमिन लॉगिन</h3><label>दूसरा पासवर्ड</label><input id="p2" type="password" autocomplete="off"><div id="msg"></div><button class="btn" onclick="chk2()">लॉगिन</button>`)}
+function chk2(){if($("#p2").value===PW2)panel();else $("#msg").textContent="पासवर्ड गलत है।"}
+
+function panel(){
+  const g=gh();
+  openSheet(`<h3>एडमिन पैनल</h3>
+  <label>टाइटल</label><input id="f_t">
+  <label>कैटेगरी</label><select id="f_c">${Object.keys(CATS).map(k=>`<option value="${k}">${CATS[k]}</option>`).join("")}</select>
+  ${eduBlock()}<label>फोटो लिंक / थंबनेल</label><input id="f_i" type="url" placeholder="https://...">
+  <label>वीडियो लिंक (YouTube / MP4)</label><input id="f_v" type="url" placeholder="https://youtu.be/... या https://.../video.mp4">
+  <label>डिस्क्रिप्शन</label><textarea id="f_d" rows="4"></textarea>
+  <label>Post Time — कब दिखेगी (खाली = अभी)</label><input id="f_pt" type="datetime-local">
+  <label>Delete Option</label><select id="f_dm"><option value="no">No Delete — कभी Delete नहीं होगी</option><option value="time">Delete Time — समय पर अपने आप Delete</option></select>
+  <div id="f_dtw" style="display:none"><label>Delete Time — कब Delete होगी</label><input id="f_dt" type="datetime-local"></div>
+  <div id="msg"></div><button class="btn" id="pub" onclick="publish()">पब्लिश करें</button>
+  <details><summary>GitHub सेटिंग</summary>
+    <label>Username</label><input id="g_o" value="${esc(g.owner)}">
+    <label>Repository</label><input id="g_r" value="${esc(g.repo)}">
+    <label>Branch</label><input id="g_b" value="${esc(g.branch)}">
+    <label>Personal Access Token (Contents: Read &amp; Write)</label><input id="g_t" type="password" value="${esc(g.token)}" autocomplete="off">
+    <button class="btn alt" onclick="saveCfg()">सेटिंग सेव करें</button></details>
+  <h2 class="sec" style="font-size:18px">सभी पोस्ट (${all.length})</h2>
+  ${all.map(p=>`<div class="item"><span><b>${CATS[p.category]}</b> · ${esc(p.title)}${p.video?" 🎬":""}${adminInfo(p)}</span><button class="btn del" onclick="del('${esc(p.id)}')">डिलीट</button></div>`).join("")||'<div class="empty">कोई पोस्ट नहीं।</div>'}`);
+}
+function saveCfg(){ls.set("nx_owner",$("#g_o").value.trim());ls.set("nx_repo",$("#g_r").value.trim());ls.set("nx_branch",$("#g_b").value.trim()||"main");ls.set("nx_token",$("#g_t").value.trim());$("#msg").textContent="सेटिंग सेव हो गई।"}
+const setMsg=(t,bad)=>{const m=$("#msg");if(m){m.textContent=t;m.style.color=bad?"var(--hot)":"var(--acc)"}};
+
+/* ====== GitHub में posts.json अपडेट ====== */
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+async function saveToGitHub(list){
+  const g=gh();
+  if(!g.token||!g.owner||g.owner==="YOUR_GITHUB_USERNAME")throw new Error("पहले GitHub सेटिंग भरें और सेव करें।");
+  const url=`https://api.github.com/repos/${g.owner}/${g.repo}/contents/${CFG.file}`;
+  const H={Authorization:"Bearer "+g.token,Accept:"application/vnd.github+json"};
+  let sha;
+  const r=await fetch(`${url}?ref=${g.branch}`,{headers:H,cache:"no-store"});
+  if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error("GitHub से फाइल नहीं मिली ("+r.status+")। Token या Repo जाँचें।");
+  const w=await fetch(url,{method:"PUT",headers:H,body:JSON.stringify({message:"PlusOne: posts update",content:b64(JSON.stringify(list,null,2)),branch:g.branch,...(sha?{sha}:{})})});
+  if(!w.ok)throw new Error("सेव नहीं हुआ ("+w.status+")। Token की Write permission जाँचें।");
+}
+async function publish(){
+  const title=$("#f_t").value.trim();
+  if(!title)return setMsg("टाइटल लिखना ज़रूरी है।",1);
+  const ex=eduFields();if(typeof ex==="string")return setMsg(ex,1);
+  const pt=$("#f_pt").value,dtv=$("#f_dt").value,dm=$("#f_dm").value;
+  if(dm==="time"&&!dtv)return setMsg("Delete Time चुनें, या No Delete रखें।",1);
+  const post_time=pt?new Date(pt).toISOString():"",delete_time=dm==="time"?new Date(dtv).toISOString():"";
+  if(delete_time&&Date.parse(delete_time)<=Date.parse(post_time||new Date().toISOString()))return setMsg("Delete Time, Post Time के बाद का होना चाहिए।",1);
+  const p={id:Date.now(),title,category:$("#f_c").value,...ex,post_time,delete_time,thumbnail:$("#f_i").value.trim(),video:$("#f_v").value.trim(),description:$("#f_d").value.trim(),likes:0,date:new Date().toISOString()};
+  $("#pub").disabled=true;setMsg("पब्लिश हो रहा है…");
+  try{await saveToGitHub([p,...all]);all=clean([p,...all]);refresh();render();panel();setMsg("पब्लिश हो गया।")}
+  catch(e){$("#pub").disabled=false;setMsg(e.message,1)}
+}
+async function del(id){
+  if(!confirm("यह पोस्ट डिलीट करें?"))return;
+  const next=all.filter(p=>String(p.id)!==String(id));
+  try{await saveToGitHub(next);all=next;refresh();render();panel();setMsg("डिलीट हो गया।")}
+  catch(e){setMsg(e.message,1)}
+}
+$("#q").oninput=e=>{q=e.target.value;render()};
+/* ====== Share System: सब जगह एक ही Text = Post Title + Website Link ====== */
+const shLink=()=>location.href.split("#")[0].split("?")[0];
+const shText=p=>p.title+"\n"+shLink();
+let shP=null,tmr;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tmr);tmr=setTimeout(()=>t.classList.remove("on"),3500)}
+function copyText(t){
+  const fb=()=>{try{const a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();const ok=document.execCommand("copy");a.remove();return ok}catch(e){return false}};
+  if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t).then(()=>true,()=>fb());
+  return Promise.resolve(fb())}
+function openShare(p){shP=p;
+  $("#shsheet").innerHTML=`<button class="x" data-sh="close" aria-label="बंद करें">×</button><h3>शेयर करें</h3><p class="shp">${esc(p.title)}</p><div class="shg"><button data-sh="wa" class="wa"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" style="flex:none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M16 7.5a8.5 8.5 0 0 0-7.3 12.8L7.5 24.5l4.3-1.1A8.5 8.5 0 1 0 16 7.5z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12.6 12.2c.3-.6.6-.6.9-.6h.5c.2 0 .4.1.5.4l.8 1.9c.1.2 0 .4-.1.6l-.6.7c-.1.1-.1.3 0 .4.6 1 1.6 2 2.7 2.5.2.1.3.1.4 0l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.2.1.3.3.3.5 0 .8-.6 1.7-1.5 1.9-1 .3-2.7-.1-4.5-1.5-1.8-1.4-3-3-3.3-4.3-.2-1 .2-1.9.7-2.4z" fill="#fff"/></svg><span>WhatsApp</span></button><button data-sh="more">⋯ More Options</button><button data-sh="close" class="cl">❌ Close</button></div>`;
+  $("#shov").classList.add("show")}
+function closeShare(){$("#shov").classList.remove("show")}
+$("#shov").onclick=e=>{if(e.target.id==="shov")closeShare()};
+function shAct(a){
+  if(a==="close"){closeShare();return}
+  if(!shP)return;
+  const t=shText(shP),L=shLink(),enc=encodeURIComponent;
+  if(a==="wa")window.open("https://wa.me/?text="+enc(t),"_blank");
+  else if(a==="more"){if(navigator.share)navigator.share({text:t}).catch(()=>{});else copyText(t).then(()=>toast("Link Copy हो गया"))}
+  closeShare()}
+document.addEventListener("change",e=>{if(e.target.id==="f_c"||e.target.id==="f_ty")admToggle();if(e.target.id==="f_dm")$("#f_dtw").style.display=e.target.value==="time"?"block":"none"});
+document.addEventListener("click",e=>{
+  const sb=e.target.closest("[data-sh]");if(sb){shAct(sb.dataset.sh);return}
+  const cv=e.target.closest("[data-pid]");if(cv){const p=posts.find(x=>String(x.id)===cv.dataset.pid);if(p)cv.outerHTML=media(p,true);return}
+  const ed=e.target.closest("[data-e]");if(ed){edu=ed.dataset.e;render();return}
+  const l=e.target.closest("[data-like]");
+  if(l){const id=l.dataset.like,m=lk(),p=posts.find(x=>String(x.id)===id);if(m[id])delete m[id];else m[id]=1;ls.set("nx_likes",JSON.stringify(m));const on=!!m[id];
+    document.querySelectorAll("[data-like]").forEach(b=>{if(b.dataset.like===id){b.classList.toggle("on",on);b.setAttribute("aria-pressed",on);b.querySelector("span").textContent=((p&&p.likes)||0)+(on?1:0)}});return}
+  const s=e.target.closest("[data-share]");
+  if(s){const p=posts.find(x=>String(x.id)===s.dataset.share);if(p)openShare(p)}
+});
+setInterval(()=>{if(refresh()){render();purge()}},30000);
+load();
+</script>
+</body>
+</html>

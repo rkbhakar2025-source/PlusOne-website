@@ -1,0 +1,119 @@
+[
+  {
+    "id": 1700000006000,
+    "title": "सैंपल Quiz: सामान्य ज्ञान",
+    "category": "Education",
+    "type": "quiz",
+    "thumbnail": "",
+    "video": "",
+    "description": "5 सवालों का छोटा Quiz।",
+    "likes": 0,
+    "date": "2026-11-22T10:00:00.000Z",
+    "quiz": [
+      {
+        "q": "भारत की राजधानी क्या है?",
+        "options": [
+          "मुंबई",
+          "नई दिल्ली",
+          "कोलकाता",
+          "चेन्नई"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "राजस्थान की राजधानी कौन सी है?",
+        "options": [
+          "जयपुर",
+          "जोधपुर",
+          "उदयपुर",
+          "कोटा"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "सूर्य किस दिशा में उगता है?",
+        "options": [
+          "पश्चिम",
+          "उत्तर",
+          "पूर्व",
+          "दक्षिण"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "एक सप्ताह में कितने दिन होते हैं?",
+        "options": [
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "पानी का रासायनिक सूत्र क्या है?",
+        "options": [
+          "CO2",
+          "H2O",
+          "O2",
+          "NaCl"
+        ],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "id": 1700000005000,
+    "title": "सैंपल Notes: प्रकाश",
+    "category": "Education",
+    "type": "notes",
+    "subject": "विज्ञान",
+    "class": "10",
+    "chapter": "प्रकाश",
+    "notes_link": "",
+    "thumbnail": "",
+    "video": "",
+    "description": "Notes का Link डालने पर यहाँ PDF / Photo Notes खुलेंगे।",
+    "likes": 0,
+    "date": "2026-11-21T10:00:00.000Z"
+  },
+  {
+    "id": 1700000004000,
+    "title": "NEXORA पर आपका स्वागत है",
+    "category": "News",
+    "thumbnail": "",
+    "video": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+    "description": "यह एक सैंपल वीडियो पोस्ट है। Admin पैनल से इसे डिलीट करके अपनी पोस्ट डालें।",
+    "likes": 0,
+    "date": "2026-11-20T10:00:00.000Z"
+  },
+  {
+    "id": 1700000003000,
+    "title": "सैंपल टीवी पोस्ट",
+    "category": "TV",
+    "thumbnail": "",
+    "video": "",
+    "description": "पुरानी पोस्ट में video और likes फ़ील्ड नहीं होते, फिर भी यह सही चलती है।",
+    "date": "2026-11-19T10:00:00.000Z"
+  },
+  {
+    "id": 1700000002000,
+    "title": "सैंपल एजुकेशन पोस्ट",
+    "category": "Education",
+    "thumbnail": "",
+    "video": "",
+    "description": "यहाँ अपनी पढ़ाई से जुड़ी जानकारी लिखें।",
+    "likes": 0,
+    "date": "2026-11-18T10:00:00.000Z"
+  },
+  {
+    "id": 1700000001000,
+    "title": "सैंपल म्यूज़िक पोस्ट",
+    "category": "Music",
+    "thumbnail": "",
+    "video": "",
+    "description": "YouTube या MP4 लिंक डालते ही वीडियो प्लेयर दिखने लगेगा।",
+    "likes": 0,
+    "date": "2026-11-17T10:00:00.000Z"
+  }
+]
