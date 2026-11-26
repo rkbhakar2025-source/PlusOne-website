@@ -18,24 +18,6 @@
     "date": "2026-11-20T10:00:00.000Z"
   },
   {
-    "id": 1700000003000,
-    "title": "सैंपल टीवी पोस्ट",
-    "category": "TV",
-    "thumbnail": "",
-    "video": "",
-    "description": "पुरानी पोस्ट में video और likes फ़ील्ड नहीं होते, फिर भी यह सही चलती है।",
-    "likes": 0,
-    "type": "normal",
-    "subject": "",
-    "class": "",
-    "chapter": "",
-    "notes_link": "",
-    "quiz": [],
-    "post_time": "",
-    "delete_time": "",
-    "date": "2026-11-19T10:00:00.000Z"
-  },
-  {
     "id": 1700000002000,
     "title": "सैंपल एजुकेशन पोस्ट",
     "category": "Education",
