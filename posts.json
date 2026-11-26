@@ -1,23 +1,5 @@
 [
   {
-    "id": 1700000004000,
-    "title": "NEXORA पर आपका स्वागत है",
-    "category": "News",
-    "thumbnail": "",
-    "video": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-    "description": "यह एक सैंपल वीडियो पोस्ट है। Admin पैनल से इसे डिलीट करके अपनी पोस्ट डालें।",
-    "likes": 0,
-    "type": "normal",
-    "subject": "",
-    "class": "",
-    "chapter": "",
-    "notes_link": "",
-    "quiz": [],
-    "post_time": "",
-    "delete_time": "",
-    "date": "2026-11-20T10:00:00.000Z"
-  },
-  {
     "id": 1700000002000,
     "title": "सैंपल एजुकेशन पोस्ट",
     "category": "Education",
