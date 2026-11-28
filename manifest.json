@@ -1,0 +1,16 @@
+{
+  "name": "PlusOne - द अल्टीमेट मीडिया नेटवर्क",
+  "short_name": "PlusOne",
+  "description": "PlusOne - News, TV, Education और Music, सब कुछ Free",
+  "start_url": "/PlusOne-website/",
+  "scope": "/PlusOne-website/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "hi",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
