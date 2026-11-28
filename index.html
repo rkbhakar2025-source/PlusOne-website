@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PlusOne | द अल्टीमेट मीडिया नेटवर्क</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FFD700">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PlusOne">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Rozha+One&display=swap" rel="stylesheet">
 <style>
@@ -84,6 +91,11 @@ summary{cursor:pointer;font-weight:600}
 .shg button{background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:12px;padding:12px 6px;min-height:48px;font:700 15px 'Mukta',sans-serif;cursor:pointer}
 #toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);max-width:92%;background:#000;color:#fff;border:1.5px solid #D4AF37;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14px;text-align:center;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s}
 #toast.on{opacity:1}
+.pulse{height:3px;background:linear-gradient(90deg,transparent,#ff1744,#FFD700,#ff1744,transparent);background-size:200% 100%;animation:pl 2.2s linear infinite}
+@keyframes pl{from{background-position:200% 0}to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+.inst{display:block;width:100%;margin:8px 0 14px;padding:16px;background:#FFD700;color:#000;border:2px solid #000;border-radius:14px;font:800 18px 'Mukta',sans-serif;cursor:pointer;box-shadow:0 0 0 2px #ff1744}
+.free{font-size:13px;font-weight:700;color:#16a34a;margin:-6px 0 12px}
 </style>
 </head>
 <body>
@@ -91,6 +103,7 @@ summary{cursor:pointer;font-weight:600}
   <div id="logo">PlusOne</div>
   <div class="tag">द अल्टीमेट<br>मीडिया नेटवर्क</div>
 </header>
+<div class="pulse"></div>
 <div class="srch"><input id="q" type="search" placeholder="खोजें" autocomplete="off" aria-label="खोजें"></div>
 <main id="app"><div class="empty">लोड हो रहा है…</div></main>
 <nav id="nav"></nav>
@@ -101,7 +114,7 @@ summary{cursor:pointer;font-weight:600}
 
 <script>
 /* ====== GitHub सेटिंग (यहाँ अपना username / repo डालें) ====== */
-const CFG={owner:"YOUR_GITHUB_USERNAME",repo:"YOUR_REPO_NAME",branch:"main",file:"posts.json"};
+const CFG={owner:"rkbhakar2025-source",repo:"PlusOne-website",branch:"main",file:"posts.json"};
 const PW1="9116808120",PW2="9783329783";
 const CATS={News:"न्यूज़",TV:"टीवी",Education:"शिक्षा",Music:"म्यूज़िक"};
 const PAGES=[["home","होम"],["News","न्यूज़"],["TV","टीवी"],["Education","शिक्षा"],["Music","म्यूज़िक"]];
@@ -153,7 +166,7 @@ const card=p=>`<div class="card${p.type==="notes"?" notes":""}">${tbadge(p)}${me
 
 /* ====== Pages ====== */
 const inPage=()=>posts.filter(p=>p.category===page&&(page!=="Education"||edu==="all"||p.type===edu));
-const eduBar=()=>page==="Education"?`<div class="edu">${[["all","All Posts"],["notes","Notes"],["quiz","Quiz"]].map(([k,l])=>`<button data-e="${k}" class="${k===edu?"on":""}">${l}</button>`).join("")}</div>`:"";
+const eduBar=()=>page==="Education"?`<p class="free">✅ सब कुछ Free है — कोई Payment, OTP या Login नहीं</p><div class="edu">${[["all","All Posts"],["notes","Notes"],["quiz","Quiz"]].map(([k,l])=>`<button data-e="${k}" class="${k===edu?"on":""}">${l}</button>`).join("")}</div>`:"";
 function eduBlock(){const L="ABCD".split("");return `<div id="f_edu" style="display:none"><label>टाइप</label><select id="f_ty"><option value="normal">Normal Post</option><option value="notes">Notes</option><option value="quiz">Quiz</option></select>
   <div id="f_notes" style="display:none"><label>Subject</label><input id="n_s"><label>Class</label><input id="n_c"><label>Chapter</label><input id="n_h"><label>Notes Link (PDF / Photo)</label><input id="n_l" type="url" placeholder="https://..."></div>
   <div id="f_quiz" style="display:none">${[1,2,3,4,5].map(n=>`<div class="qb"><label>सवाल ${n}</label><input id="qq${n}">${L.map((x,k)=>`<input id="qo${n}${k}" placeholder="Option ${x}">`).join("")}<label>सही जवाब</label><select id="qc${n}">${L.map((x,k)=>`<option value="${k}">${x}</option>`).join("")}</select></div>`).join("")}</div></div>`}
@@ -172,6 +185,15 @@ function quizInit(p){const el=$("#quiz");if(!el)return;let i=0,sc=0,lock=false;c
     const bs=el.querySelectorAll(".qo");
     bs.forEach(b=>b.onclick=()=>{if(lock)return;lock=true;const k=+b.dataset.k;if(k===q.answer){sc++;b.classList.add("ok")}else{b.classList.add("bad");bs[q.answer].classList.add("ok")}setTimeout(()=>{i++;show()},1100)})};
   show()}
+/* ====== PWA: App Install ====== */
+let deferredPrompt=null;
+const isApp=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+const instBtn=()=>isApp()?"":`<button class="inst" data-install>📲 PlusOne App Install करो</button>`;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e});
+addEventListener("appinstalled",()=>{deferredPrompt=null;render()});
+async function doInstall(){
+  if(deferredPrompt){deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;return}
+  openSheet(`<h3>📲 App Install करें</h3><p><b>Android (Chrome):</b> ऊपर ⋮ मेन्यू दबाएँ → <b>Install app</b> या <b>Add to Home screen</b>।</p><p style="margin-top:8px"><b>iPhone (Safari):</b> नीचे Share ⬆️ दबाएँ → <b>Add to Home Screen</b>।</p>`)}
 function render(){
   $("#nav").innerHTML=PAGES.map(([k,l])=>`<button class="${k===page?"on":""}" data-p="${k}">${l}</button>`).join("");
   const app=$("#app");
@@ -181,7 +203,7 @@ function render(){
   if(page==="home"){
     const h=posts[0];
     const trend=[...posts.filter(p=>p.video),...posts.filter(p=>!p.video)].slice(0,6);
-    app.innerHTML=`<div class="hero">${media(h)}<div class="body" data-id="${esc(h.id)}"><div class="meta"><span class="badge">${CATS[h.category]}</span>${dt(h.date)}${delTag(h)}</div><h1>${esc(h.title)}</h1></div>${acts(h)}</div>
+    app.innerHTML=`${instBtn()}<div class="hero">${media(h)}<div class="body" data-id="${esc(h.id)}"><div class="meta"><span class="badge">${CATS[h.category]}</span>${dt(h.date)}${delTag(h)}</div><h1>${esc(h.title)}</h1></div>${acts(h)}</div>
     <h2 class="sec">ट्रेंडिंग</h2><div class="row">${trend.map(card).join("")}</div>
     <h2 class="sec">ताज़ा पोस्ट</h2><div class="grid">${posts.map(card).join("")}</div>`;
   }else{
@@ -286,6 +308,7 @@ function shAct(a){
   closeShare()}
 document.addEventListener("change",e=>{if(e.target.id==="f_c"||e.target.id==="f_ty")admToggle();if(e.target.id==="f_dm")$("#f_dtw").style.display=e.target.value==="time"?"block":"none"});
 document.addEventListener("click",e=>{
+  const ib=e.target.closest("[data-install]");if(ib){doInstall();return}
   const sb=e.target.closest("[data-sh]");if(sb){shAct(sb.dataset.sh);return}
   const cv=e.target.closest("[data-pid]");if(cv){const p=posts.find(x=>String(x.id)===cv.dataset.pid);if(p)cv.outerHTML=media(p,true);return}
   const ed=e.target.closest("[data-e]");if(ed){edu=ed.dataset.e;render();return}
@@ -296,6 +319,7 @@ document.addEventListener("click",e=>{
   if(s){const p=posts.find(x=>String(x.id)===s.dataset.share);if(p)openShare(p)}
 });
 setInterval(()=>{if(refresh()){render();purge()}},30000);
+if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}));
 load();
 </script>
 </body>
